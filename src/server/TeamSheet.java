@@ -15,10 +15,17 @@ public class TeamSheet implements Serializable {
 
 	private static final long serialVersionUID = -215213122891539175L;
 	
-	HashMap teams;
+	HashMap<Integer, Team> teams;
 	
+	/*
+	 * Constructor
+	 * Author: Jeremiah Hanson
+	 * ------------------------------------------
+	 * Purpose: Constructor
+	 * Parameters: None
+	 */
 	private TeamSheet() {
-		teams = new HashMap();
+		teams = new HashMap<Integer, Team>();
 	}
 	
 }
