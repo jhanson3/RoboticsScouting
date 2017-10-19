@@ -6,7 +6,7 @@
  * teams to the list.
  */
 
-package server;
+package serverDataBase;
 
 import java.io.Serializable;
 import java.util.HashMap;
