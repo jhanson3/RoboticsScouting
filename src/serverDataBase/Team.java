@@ -18,6 +18,7 @@ public class Team implements Serializable {
 	private int teamNum;
 	private String teamName;
 	private ArrayList<String> notes;
+	private ArrayList<Match> matches;
 	
 	/*
 	 * Constructor
@@ -32,6 +33,7 @@ public class Team implements Serializable {
 		teamNum = num;
 		teamName = name;
 		notes = new ArrayList<String>();
+		matches = new ArrayList<Match>();
 	}
 	
 	/*
@@ -132,6 +134,18 @@ public class Team implements Serializable {
 	 */
 	public void deleteNoteAt(int index) {
 		notes.remove(index);
+	}
+	
+	/*
+	 * addMatch
+	 * Author: Jeremiah Hanson
+	 * -----------------------------------------
+	 * Purpose: add a match to the matches arrayList
+	 * Parameters:
+	 * 	match: the Match to add
+	 */
+	public void addMatch(Match match) {
+		matches.add(match);
 	}
 
 }
