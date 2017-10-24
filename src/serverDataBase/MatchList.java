@@ -1,3 +1,10 @@
+/*
+ * MatchList
+ * Author: Jeremiah Hanson
+ * -----------------------------------------------------------------------
+ * This class holds a list of all the matches in an FRC Regional or 
+ * championship. It uses an ArrayList to store the Matches. It is a Singleton
+ */
 package serverDataBase;
 
 import java.io.Serializable;

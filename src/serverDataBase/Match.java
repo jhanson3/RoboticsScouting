@@ -1,5 +1,5 @@
 /*
- * Match
+ * Match.java
  * Author: Jeremiah Hanson
  * ---------------------------------------------------------------------
  * This class is responsible for keeping track of an individual match.
