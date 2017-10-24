@@ -160,4 +160,22 @@ public class Match {
 			return redCur + blueCur;
 		}
 	}
+	
+	/*
+	 * getAlliance
+	 * Author: Jeremiah Hanson
+	 * --------------------------------------------
+	 * Purpose: gets an alliance array
+	 * Parameters:
+	 * 	alliance: the alliance to get the array for
+	 */
+	public Team[] getAlliance(Alliance alliance) {
+		if (alliance == Alliance.RED_ALLIANCE) {
+			return redAlliance;
+		} else if (alliance == Alliance.BLUE_ALLIANCE) {
+			return blueAlliance;
+		} else {
+			return null;
+		}
+	}
 }
