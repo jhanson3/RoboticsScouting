@@ -59,6 +59,16 @@ public class Tournament implements Serializable{
 	}
 	
 	/*
+	 * getName
+	 * Author: Jeremiah Hanson
+	 * ----------------------------------------
+	 * Purpose: Gets the name of the Tournament
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/*
 	 * generateMatchList
 	 * Author: Jeremiah Hanson
 	 * -------------------------------------
@@ -87,5 +97,23 @@ public class Tournament implements Serializable{
 	public void addMatch() {
 		matchList.addMatch();
 	}
+	
+	/*
+	 * addTeam
+	 * Author: Jeremiah Hanson
+	 * ------------------------------------------
+	 * Purpose: Adds a team to TeamSheet
+	 * 	num: the team number
+	 * 	hasName: boolean value tells if the name was \
+	 * 		entered when creating
+	 * 	name: the name of the team as a String
+	 */
+	public void addTeam(int num, boolean hasName, String name) {
+		teamSheet.addTeam(num, hasName, name);
+	}
+	
+	
+	
+	
 
 }
