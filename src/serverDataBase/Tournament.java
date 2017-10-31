@@ -115,15 +115,13 @@ public class Tournament implements Serializable{
 	}
 	
 	/*
-	 * getTeam
+	 * getTeamSheet
 	 * Author: Jeremiah Hanson
 	 * -------------------------------------------
-	 * Purpose: Gets a team based on number
-	 * Parameters:
-	 * 	num: int of team number
+	 * Purpose: Gets teamSheet
 	 */
-	public Team getTeam(int num) {
-		return teamSheet.getTeam(num);
+	public TeamSheet getTeamSheet() {
+		return teamSheet;
 	}
 	
 	/*
@@ -142,6 +140,16 @@ public class Tournament implements Serializable{
 		if (teamSheet.teamExists(teamNum)) {
 			MatchList.addTeamToMatch(teamSheet.getTeam(teamNum), allNum, matchNum, alliance);
 		}
+	}
+	
+	/*
+	 * getMatchList
+	 * Author: Jeremiah Hanson
+	 * ------------------------------------
+	 * Purpose: gets the Matchlist
+	 */
+	public MatchList getMatchList() {
+		return matchList;
 	}
 	
 	
