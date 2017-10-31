@@ -112,6 +112,18 @@ public class Tournament implements Serializable{
 		teamSheet.addTeam(num, hasName, name);
 	}
 	
+	/*
+	 * getTeam
+	 * Author: Jeremiah Hanson
+	 * -------------------------------------------
+	 * Purpose: Gets a team based on number
+	 * Parameters:
+	 * 	num: int of team number
+	 */
+	public Team getTeam(int num) {
+		return teamSheet.getTeam(num);
+	}
+	
 	
 	
 	

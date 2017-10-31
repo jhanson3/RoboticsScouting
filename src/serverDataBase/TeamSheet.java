@@ -75,4 +75,22 @@ public class TeamSheet implements Serializable {
 		teams.put(team.getTeamNum(), team);
 	}
 	
+	/*
+	 * getTeam
+	 * Author: Jeremiah Hanson
+	 * -----------------------------------------------
+	 * Purpose: This gets a team by its number
+	 * Parameters:
+	 * 	num: an int representing the team number
+	 */
+	public Team getTeam(int num) {
+		
+		if (teams.containsKey(num)) {
+			return teams.get(num);
+		} else {
+			return null;
+		}
+		
+	}
+	
 }
