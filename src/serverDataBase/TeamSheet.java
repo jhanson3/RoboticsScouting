@@ -93,4 +93,20 @@ public class TeamSheet implements Serializable {
 		
 	}
 	
+	/*
+	 * teamExists
+	 * Author: Jeremiah Hanson
+	 * ------------------------------------------------
+	 * Purpose: returns true if team number exists
+	 * Parameters:
+	 * 	num: int of team number to check for
+	 */
+	public boolean teamExists(int num) {
+		
+		if (teams.containsKey(num)) {
+			return true;
+		}
+		return false;
+	}
+	
 }

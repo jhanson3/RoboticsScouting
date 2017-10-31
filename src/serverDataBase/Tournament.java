@@ -9,6 +9,8 @@ package serverDataBase;
 
 import java.io.Serializable;
 
+import enums.Alliance;
+
 public class Tournament implements Serializable{
 
 	private static final long serialVersionUID = -7962296448262915652L;
@@ -122,6 +124,24 @@ public class Tournament implements Serializable{
 	 */
 	public Team getTeam(int num) {
 		return teamSheet.getTeam(num);
+	}
+	
+	/*
+	 * addTeamToMatch
+	 * Author: Jeremiah Hanson
+	 * --------------------------------------------
+	 * Purpose: Add a team to a match
+	 * Parameters:
+	 * 	teamNum: team to add (int)
+	 * 	allNum: number on the alliance (int)
+	 * 	matchNum: the match number (int)
+	 * 	alliance: Alliance to add to (Alliance)
+	 */
+	public void addTeamToMatch(int teamNum, int allNum, int matchNum, Alliance alliance) {
+		
+		if (teamSheet.teamExists(teamNum)) {
+			MatchList.addTeamToMatch(teamSheet.getTeam(teamNum), allNum, matchNum, alliance);
+		}
 	}
 	
 	

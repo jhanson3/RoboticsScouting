@@ -10,12 +10,14 @@ package serverDataBase;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import enums.Alliance;
+
 public class MatchList implements Serializable{
 
 	private static final long serialVersionUID = -2479177965817464578L;
 	
 	private MatchList matchList;
-	private ArrayList<Match> matches;
+	private static ArrayList<Match> matches;
 	
 	/*
 	 * Constructor
@@ -94,5 +96,21 @@ public class MatchList implements Serializable{
 	public boolean isEmpty() {
 		return matches.isEmpty();
 	}
+	
+	/*
+	 * addTeamToMatch
+	 * Author: Jeremiah Hanson
+	 * --------------------------------------------
+	 * Purpose: Add a team to a match
+	 * Parameters:
+	 * 	team: team to add (Team)
+	 * 	allNum: number on the alliance (int)
+	 * 	matchNum: the match number (int)
+	 * 	alliance: Alliance to add to (Alliance)
+	 */
+	public static void addTeamToMatch(Team team, int allNum, int matchNum, Alliance alliance) {
+		matches.get(matchNum).addTeam(team, allNum, alliance);
+	}
+	
 
 }
