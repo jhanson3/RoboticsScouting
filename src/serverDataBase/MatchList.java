@@ -84,5 +84,15 @@ public class MatchList implements Serializable{
 	public Match getMatch(int num) {
 		return matches.get(num);
 	}
+	
+	/*
+	 * isEmpty
+	 * Author: Jeremiah Hanson
+	 * -----------------------------------------------
+	 * Purpose: tells if the matchList is empty
+	 */
+	public boolean isEmpty() {
+		return matches.isEmpty();
+	}
 
 }
