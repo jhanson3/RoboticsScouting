@@ -10,6 +10,9 @@ package serverDataBase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import enums.ScoreType;
 
 public class Team implements Serializable {
 
@@ -19,6 +22,7 @@ public class Team implements Serializable {
 	private String teamName;
 	private ArrayList<String> notes;
 	private ArrayList<Match> matches;
+	private HashMap<Integer, HashMap<ScoreType, ArrayList<Score>>> scores;
 	
 	/*
 	 * Constructor
@@ -30,6 +34,7 @@ public class Team implements Serializable {
 	 * 	name: A String that holds the teams name
 	 */
 	public Team(int num, String name) {
+		
 		teamNum = num;
 		teamName = name;
 		notes = new ArrayList<String>();
