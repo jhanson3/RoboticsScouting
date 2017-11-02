@@ -8,9 +8,13 @@
 
 package serverDataBase;
 
+import java.io.Serializable;
+
 import enums.Alliance;
 
-public class Match {
+public class Match implements Serializable{
+
+	private static final long serialVersionUID = -6091691994208693425L;
 
 	private int matchNum, redScore, blueScore, redCur, blueCur;
 	private Team[] redAlliance, blueAlliance;
