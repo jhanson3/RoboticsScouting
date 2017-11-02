@@ -2,7 +2,7 @@
  * MatchScore.java
  * Author: Jeremiah Hanson
  * -----------------------------------------------------------------
- * This keeps track of the match score and who scored the points
+ * This keeps track of the match score for a team
  */
 
 package serverDataBase;
@@ -11,44 +11,25 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import enums.ScoreType;
+
 public class MatchScore implements Serializable{
 
 	private static final long serialVersionUID = 2243015341974941625L;
-	private HashMap<Integer, ArrayList<Score>> scores;
-	private int totalPoints, team1, team2, team3;
+	private HashMap<ScoreType, Score> scores;
+	private int totalPoints;
 	
 	/*
 	 * Constructor
 	 * Author: Jeremiah Hanson
 	 * -------------------------------------------
 	 * Purpose: constructor
-	 * Parameters: 
-	 * 	team1: number for team one
-	 * 	team2: number for team 2
-	 * 	team3: number for team 3
 	 */
-	public MatchScore(int num1, int num2, int num3) {
+	public MatchScore() {
 		
-		scores = new HashMap<Integer, ArrayList<Score>>();
+		scores = new HashMap<ScoreType, Score>();
 		totalPoints = 0;
-		team1 = num1;
-		team2 = num2;
-		team3 = num3;
-		setupHashMap();
 		
-	}
-	
-	/*
-	 * setupHashMap
-	 * Author: Jeremiah Hanson
-	 * ----------------------------------------------
-	 * Purpose: sets up the hashmap
-	 */
-	private void setupHashMap() {
-		
-		scores.put(team1, new ArrayList<Score>());
-		scores.put(team2, new ArrayList<Score>());
-		scores.put(team3, new ArrayList<Score>());
 	}
 	
 	/*
@@ -57,12 +38,16 @@ public class MatchScore implements Serializable{
 	 * ---------------------------------------------
 	 * Purpose: Adds a score to the scores HashMap
 	 * Parameters:
-	 * 	num: the team number to use as the key
 	 * 	score: the Score to add
 	 */
-	public void addScore(int num, Score score) {
+	public void addScore(Score score) {
 		
-		scores.get(num).add(score);
+		if (scores.containsKey(score.getScoreType())) {
+			scores.get(score.getScoreType()).addScore(score.getTimesScored());;
+		} else {
+			scores.put(score.getScoreType(), score);
+		}
+		
 		
 		totalPoints += score.getPoints();
 	}
@@ -80,23 +65,18 @@ public class MatchScore implements Serializable{
 	}
 	
 	/*
-	 * pointsByTeam
+	 * pointsByScore
 	 * Author: Jeremiah Hanson
 	 * ---------------------------------------------
 	 * Purpose: This gets the number of points scored
-	 * 		by a single team.
+	 * 		by a given ScoreType
 	 * Parameters: 
-	 * 	num: The team number to get the points of
+	 * 	type: the ScoreType of the scores to add up
 	 */
-	public int pointsByTeam(int num) {
+	public int pointsByScore(int num) {
 		
-		int points = 0;
-		ArrayList<Score> temp = scores.get(num);
-		for (int i=0; i<temp.size(); i++) {
-			points += temp.get(i).getPoints();
-		}
-		
-		return points;
+		//TODO: update method
+		return -1;
 	}
 	
 	

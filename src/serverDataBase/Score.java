@@ -10,10 +10,13 @@ package serverDataBase;
 
 import java.io.Serializable;
 
+import enums.ScoreType;
+
 public abstract class Score implements Serializable{
 
 	private static final long serialVersionUID = -6924965503272209646L;
 	private int points, timesScored;
+	private ScoreType type;
 	
 	/*
 	 * Constructor
@@ -39,6 +42,16 @@ public abstract class Score implements Serializable{
 	 * 		on the subclass
 	 */
 	public abstract void scorePoints();
+	
+	/*
+	 * getScoreType
+	 * Author: Jeremiah Hanson
+	 * --------------------------------------------
+	 * Purpose: gets the ScoreType
+	 */
+	public ScoreType getScoreType() {
+		return type;
+	}
 	
 	/*
 	 * addScore

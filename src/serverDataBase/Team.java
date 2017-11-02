@@ -22,7 +22,7 @@ public class Team implements Serializable {
 	private String teamName;
 	private ArrayList<String> notes;
 	private ArrayList<Match> matches;
-	private HashMap<Integer, HashMap<ScoreType, ArrayList<Score>>> scores;
+	private HashMap<Integer, MatchScore> scores;
 	
 	/*
 	 * Constructor
@@ -39,8 +39,10 @@ public class Team implements Serializable {
 		teamName = name;
 		notes = new ArrayList<String>();
 		matches = new ArrayList<Match>();
+		scores = new HashMap<Integer, MatchScore>();
+		
 	}
-	
+
 	/*
 	 * Constructor
 	 * Author: Jeremiah Hanson
