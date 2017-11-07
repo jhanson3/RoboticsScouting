@@ -17,7 +17,7 @@ public class Tournament implements Serializable{
 	
 	private MatchList matchList;
 	private TeamSheet teamSheet;
-	private Tournament tournament;
+	private static Tournament tournament;
 	private String name;
 	
 	/*
@@ -30,8 +30,8 @@ public class Tournament implements Serializable{
 		
 		tournament = this;
 		name = "New Tournament";
-		matchList = matchList.getInstanceOf();
-		teamSheet = teamSheet.getInstanceOf();
+		matchList = MatchList.getInstanceOf();
+		teamSheet = TeamSheet.getInstanceOf();
 	}
 	
 	/*
@@ -41,7 +41,7 @@ public class Tournament implements Serializable{
 	 * Purpose: gets the instance of tournament
 	 * 		or creates it if null then sends
 	 */
-	public Tournament getInstanceOf() {
+	public static Tournament getInstanceOf() {
 		if (tournament == null) {
 			tournament = new Tournament();
 		}

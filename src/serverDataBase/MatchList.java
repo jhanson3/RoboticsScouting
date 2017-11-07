@@ -16,7 +16,7 @@ public class MatchList implements Serializable{
 
 	private static final long serialVersionUID = -2479177965817464578L;
 	
-	private MatchList matchList;
+	private static MatchList matchList;
 	private static ArrayList<Match> matches;
 	
 	/*
@@ -37,7 +37,7 @@ public class MatchList implements Serializable{
 	 * Purpose: Gets the instance of MatchList, or 
 	 * 		creates it if none exists.
 	 */
-	public MatchList getInstanceOf() {
+	public static MatchList getInstanceOf() {
 		
 		if (matchList == null) {
 			matchList = new MatchList();

@@ -16,7 +16,7 @@ public class TeamSheet implements Serializable {
 	private static final long serialVersionUID = -215213122891539175L;
 	
 	private HashMap<Integer, Team> teams;
-	private TeamSheet teamSheet;
+	private static TeamSheet teamSheet;
 	
 	/*
 	 * Constructor
@@ -41,7 +41,7 @@ public class TeamSheet implements Serializable {
 	 * Parameters:
 	 * 	None
 	 */
-	public TeamSheet getInstanceOf() {
+	public static TeamSheet getInstanceOf() {
 		
 		if (teamSheet == null) {
 			teamSheet = new TeamSheet();
