@@ -13,12 +13,14 @@ import serverDataBase.Tournament;
 public class Client {
 
 	private static Tournament tourn;
-	private static ClientGUI window;
+	private static static SetupView setup;
 	
 	public static void main(String[] agrs) {
 		
 		tourn = Tournament.getInstanceOf();
-		window = new ClientGUI();
-		window.setVisible(true);
+		
+		setup = new SetupView(tourn);
+		setup.setVisible(true);
+
 	}
 }
