@@ -15,11 +15,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import serverDataBase.Tournament;
 
-public class SetupView extends JFrame{
+public class SetupView extends JPanel{
 
 	private static final long serialVersionUID = 8258005025289483246L;
 
@@ -33,22 +34,19 @@ public class SetupView extends JFrame{
 	 * ----------------------------------
 	 * Purpose: constructor
 	 * Parameters:
-	 * 	event: The tournament event
+	 * 	none
 	 */
-	public SetupView(Tournament event) {
+	public SetupView() {
 		
-		this.event = event;
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		event = Tournament.getInstanceOf();
+
 		this.setSize(400, 400);
-		this.setLocation(100, 100);
-		this.setTitle("CRUSH Scouting - Event Setup");
 		this.setLayout(new GridLayout(3, 1));
 		
-		nameText = new JTextField("Enter event name here.");
+		nameText = new JTextField();
 		this.add(nameText);
 		
-		numMatchesText = new JTextField("Enter number of Matches");
+		numMatchesText = new JTextField();
 		this.add(numMatchesText);
 		
 		enterButton = new JButton("Enter");
@@ -57,16 +55,35 @@ public class SetupView extends JFrame{
 		
 	}
 	
+	/*
+	 * closeWindow
+	 * Author: Jeremiah Hanson
+	 * -----------------------------------------------
+	 * Purpose: sets the setup view window's visibility 
+	 * 		to false.
+	 */
 	private void closeWindow() {
 		this.setVisible(false);
 	}
 	
+	/*
+	 * ButtonListener
+	 * Author: Jeremiah Hanson
+	 * ----------------------------------------------------------------------------
+	 * This is a private class that is used to determine what to do when the button
+	 * in this view has been pressed.
+	 */
 	private class ButtonListener implements ActionListener{
 
+		// Required by ActionListener
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			closeWindow();
+			// if either field is empty do nothing
+			if (nameText.getText().compareTo("") != 0 || numMatchesText.getText().compareTo("") != 0) {
+				closeWindow();
+			}
+			
 			
 		}
 		

@@ -8,19 +8,14 @@
 
 package client;
 
-import serverDataBase.Tournament;
-
 public class Client {
 
-	private static Tournament tourn;
-	private static static SetupView setup;
+	private static ClientGUI window;
 	
 	public static void main(String[] agrs) {
 		
-		tourn = Tournament.getInstanceOf();
-		
-		setup = new SetupView(tourn);
-		setup.setVisible(true);
+		window = new ClientGUI();
+		window.setVisible(true);
 
 	}
 }
