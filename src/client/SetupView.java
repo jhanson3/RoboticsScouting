@@ -9,14 +9,18 @@
 
 package client;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 import serverDataBase.Tournament;
 
@@ -26,30 +30,50 @@ public class SetupView extends JPanel{
 
 	private static Tournament event;
 	private JTextField nameText, numMatchesText;
+	private JTextArea nameArea, matchesArea;
 	private JButton enterButton;
+	private Font myFont;
+	private SpinnerNumberModel spinMod;
+	private JSpinner numMatchesSpin;
 	
 	/*
 	 * Constructor
 	 * Author: Jeremiah Hanson
 	 * ----------------------------------
 	 * Purpose: constructor
-	 * Parameters:
-	 * 	none
 	 */
 	public SetupView() {
 		
 		event = Tournament.getInstanceOf();
+		
+		myFont = new Font("Courier", Font.PLAIN, 40);
 
-		this.setSize(400, 400);
-		this.setLayout(new GridLayout(3, 1));
+		this.setSize(800, 400);
+		this.setLayout(new GridLayout(5, 1));
+		
+		nameArea = new JTextArea("Enter Event Name Here:");
+		nameArea.setFont(myFont);
+		this.add(nameArea);
 		
 		nameText = new JTextField();
+		nameText.setFont(myFont);
 		this.add(nameText);
 		
-		numMatchesText = new JTextField();
-		this.add(numMatchesText);
+		matchesArea = new JTextArea("Enter Number of Matches Here:");
+		matchesArea.setFont(myFont);
+		this.add(matchesArea);
+		
+		spinMod = new SpinnerNumberModel(0, 0, 100, 1);
+		numMatchesSpin = new JSpinner(spinMod);
+		numMatchesSpin.setFont(myFont);
+		this.add(numMatchesSpin);
+		
+//		numMatchesText = new JTextField();
+//		numMatchesText.setFont(myFont);
+//		this.add(numMatchesText);
 		
 		enterButton = new JButton("Enter");
+		enterButton.setFont(myFont);
 		enterButton.addActionListener(new ButtonListener());
 		this.add(enterButton);
 		
@@ -80,7 +104,9 @@ public class SetupView extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			// if either field is empty do nothing
-			if (nameText.getText().compareTo("") != 0 || numMatchesText.getText().compareTo("") != 0) {
+			if (nameText.getText().compareTo("") != 0) {
+				event.setName(nameText.getText());
+				event.generateMatchList((int)numMatchesSpin.getValue());
 				closeWindow();
 			}
 			
