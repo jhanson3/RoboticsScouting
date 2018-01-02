@@ -112,5 +112,11 @@ public class MatchList implements Serializable{
 		matches.get(matchNum).addTeam(team, allNum, alliance);
 	}
 	
-
+	public int getMatchCount() {
+		return matches.size();
+	}
+	
+	public ArrayList<Integer> listOfTeams(int matchNum){
+		return matches.get(matchNum).listOfTeams();
+	}
 }
