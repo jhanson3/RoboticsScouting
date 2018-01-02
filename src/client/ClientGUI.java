@@ -18,6 +18,8 @@ public class ClientGUI extends JFrame{
 	private static final long serialVersionUID = -8877474517268367965L;
 	private JPanel left, right;
 	private SetupView setup;
+	private SelectionWindow selection;
+	private MatchInfoView matchInfo;
 	
 	public ClientGUI() {
 		
@@ -27,8 +29,15 @@ public class ClientGUI extends JFrame{
 		this.setTitle("CRUSH Scouting");
 		this.setLayout(null);
 		
-		setup = new SetupView();
-		this.add(setup);
+//		/*
+//		setup = new SetupView();
+//		this.add(setup);
+//		*/
+		/*selection = new SelectionWindow();
+		this.add(selection);*/
+		
+		matchInfo = new MatchInfoView();
+		this.add(matchInfo);
 		
 	}
 	

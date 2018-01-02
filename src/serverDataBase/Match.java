@@ -9,6 +9,7 @@
 package serverDataBase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import enums.Alliance;
 
@@ -181,5 +182,20 @@ public class Match implements Serializable{
 		} else {
 			return null;
 		}
+	}
+	
+	public ArrayList<Integer> listOfTeams(){
+		ArrayList<Integer> listOfTeams = new ArrayList<>();
+		for(int i = 0; i <= 2; i++) {
+			if (i > redCur)
+				break;
+			listOfTeams.add(redAlliance[i].getTeamNum());
+		}
+		for(int i = 0; i <= 2; i++) {
+			if (i > blueCur)
+				break;
+			listOfTeams.add(blueAlliance[i].getTeamNum());
+		}
+		return listOfTeams;
 	}
 }

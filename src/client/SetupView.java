@@ -98,7 +98,6 @@ public class SetupView extends JPanel{
 	 * in this view has been pressed.
 	 */
 	private class ButtonListener implements ActionListener{
-
 		// Required by ActionListener
 		@Override
 		public void actionPerformed(ActionEvent arg0) {

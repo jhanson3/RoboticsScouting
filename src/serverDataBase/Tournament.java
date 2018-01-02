@@ -8,6 +8,7 @@
 package serverDataBase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import enums.Alliance;
 
@@ -152,8 +153,11 @@ public class Tournament implements Serializable{
 		return matchList;
 	}
 	
+	public int getMatchCount() {
+		return matchList.getMatchCount();
+	}
 	
-	
-	
-
+	public ArrayList<Integer> listOfTeams(int matchNum){
+		return matchList.listOfTeams(matchNum);
+	}
 }
