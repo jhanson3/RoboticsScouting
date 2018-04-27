@@ -1,14 +1,11 @@
-/*
- * ClientGUI.java
- * Author: Jeremiah Hanson
- * ---------------------------------------------------
+/**
  * This is a simple gui to be used on a computer for 
  * testing the back-end data structure
+ * @author Jeremiah Hanson
+ * @see client.ClientCommandLine
  */
 
 package client;
-
-import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,10 +26,8 @@ public class ClientGUI extends JFrame{
 		this.setTitle("CRUSH Scouting");
 		this.setLayout(null);
 		
-//		/*
-//		setup = new SetupView();
-//		this.add(setup);
-//		*/
+		/*setup = new SetupView();
+		this.add(setup);*/
 		/*selection = new SelectionWindow();
 		this.add(selection);*/
 		

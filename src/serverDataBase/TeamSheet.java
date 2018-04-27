@@ -9,6 +9,7 @@
 package serverDataBase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TeamSheet implements Serializable {
@@ -17,6 +18,7 @@ public class TeamSheet implements Serializable {
 	
 	private HashMap<Integer, Team> teams;
 	private static TeamSheet teamSheet;
+	private ArrayList<Integer> teamNumbers;
 	
 	/*
 	 * Constructor
@@ -28,6 +30,7 @@ public class TeamSheet implements Serializable {
 	private TeamSheet() {
 		teamSheet = this;
 		teams = new HashMap<Integer, Team>();
+		teamNumbers = new ArrayList<Integer>();
 	}
 	
 	/*
@@ -66,6 +69,8 @@ public class TeamSheet implements Serializable {
 		
 		Team team;
 		
+		if (teamExists(num)) return;
+		
 		if (hasName) {
 			team = new Team(num, name);
 		} else {
@@ -73,6 +78,26 @@ public class TeamSheet implements Serializable {
 		}
 		
 		teams.put(team.getTeamNum(), team);
+		teamNumbers.add(team.getTeamNum());
+	}
+	
+	/**
+	 * addTeam
+	 * <p>
+	 * Author: Jeremiah Hanson
+	 * <p>
+	 * Purpose: adds an existing team to the list
+	 * 		overwrites if it exists 
+	 * @param team the Team object to add
+	 */
+	public void addTeam(Team team) {
+		
+		if (teamExists(team.getTeamNum())) {
+			teams.replace(team.getTeamNum(), team);
+		} else {
+			teams.put(team.getTeamNum(), team);
+			teamNumbers.add(team.getTeamNum());
+		}
 	}
 	
 	/*
@@ -93,6 +118,14 @@ public class TeamSheet implements Serializable {
 		
 	}
 	
+	/**
+	 * returns the number of teams in the team sheet
+	 * @return number of teams
+	 */
+	public int getNumTeams() {
+		return teams.size();
+	}
+	
 	/*
 	 * teamExists
 	 * Author: Jeremiah Hanson
@@ -107,6 +140,24 @@ public class TeamSheet implements Serializable {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * prints the teams to console
+	 */
+	public void printTeams() {
+		System.out.println("The teams are:");
+		for (int i = 0; i < teams.size(); i++) {
+			System.out.println("    " + teamNumbers.get(i));
+		}
+	}
+	
+	/**
+	 * prints a teams matches
+	 * @param num the team to print
+	 */
+	public void printTeam(int num) {
+		teams.get(num).printMatches();
 	}
 	
 }

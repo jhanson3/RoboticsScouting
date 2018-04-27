@@ -9,7 +9,7 @@ package enums;
 
 public enum ScoreType {
 
-	SAMPLE_10(10);
+	SAMPLE_10(10), SWITCH(0), SCALE(0), OP_SWITCH(0), VAULT(5);
 	
 	private int score;
 	

@@ -1,30 +1,21 @@
-/*
- * MatchScore.java
- * Author: Jeremiah Hanson
- * -----------------------------------------------------------------
- * This keeps track of the match score for a team
- */
-
 package serverDataBase;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import enums.ScoreType;
 
+/**
+ * MatchScore.java
+ * This keeps track of the match score for a team
+ * @author Jeremiah Hanson
+ */
 public class MatchScore implements Serializable{
 
 	private static final long serialVersionUID = 2243015341974941625L;
 	private HashMap<ScoreType, Score> scores;
 	private int totalPoints;
 	
-	/*
-	 * Constructor
-	 * Author: Jeremiah Hanson
-	 * -------------------------------------------
-	 * Purpose: constructor
-	 */
 	public MatchScore() {
 		
 		scores = new HashMap<ScoreType, Score>();
@@ -32,13 +23,9 @@ public class MatchScore implements Serializable{
 		
 	}
 	
-	/*
-	 * addScore
-	 * Author: Jeremiah Hanson
-	 * ---------------------------------------------
-	 * Purpose: Adds a score to the scores HashMap
-	 * Parameters:
-	 * 	score: the Score to add
+	/**
+	 * Adds a score to the scores HashMap
+	 * 	@param score the Score to add
 	 */
 	public void addScore(Score score) {
 		
@@ -52,31 +39,42 @@ public class MatchScore implements Serializable{
 		totalPoints += score.getPoints();
 	}
 	
-	/*
-	 * getTotalPoints
-	 * Author: Jeremiah Hanson
-	 * ---------------------------------------------
-	 * Purpose: Gives the total number of points scored 
+	/**
+	 * Gives the total number of points scored 
 	 * 		by an alliance
+	 * @return the total number of points scored by an alliance
 	 */
 	public int getTotalPoints() {
 		
 		return totalPoints;
 	}
 	
-	/*
-	 * pointsByScore
-	 * Author: Jeremiah Hanson
-	 * ---------------------------------------------
-	 * Purpose: This gets the number of points scored
+	/**
+	 * This gets the number of points scored
 	 * 		by a given ScoreType
-	 * Parameters: 
-	 * 	type: the ScoreType of the scores to add up
+	 * @param type the ScoreType of the scores to add up
+	 * @author Jeremiah Hanson
 	 */
-	public int pointsByScore(int num) {
-		
-		//TODO: update method
-		return -1;
+	public int pointsByScore(ScoreType type) {
+		return scores.get(type).resetAndGetScore();
+	}
+	
+	/**
+	 * prints all the scores 
+	 */
+	public void printMatch() {
+		if (scores.containsKey(ScoreType.SWITCH)) {
+			System.out.println("      Switch: " + scores.get(ScoreType.SWITCH));
+		}
+		if (scores.containsKey(ScoreType.OP_SWITCH)) {
+			System.out.println("      Opponent's Switch: " + scores.get(ScoreType.OP_SWITCH));
+		}
+		if (scores.containsKey(ScoreType.SCALE)) {
+			System.out.println("      Scale: " + scores.get(ScoreType.SCALE));
+		}
+		if (scores.containsKey(ScoreType.VAULT)) {
+			System.out.println("      Vault: " + scores.get(ScoreType.VAULT));
+		}
 	}
 	
 	
