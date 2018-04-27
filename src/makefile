@@ -14,7 +14,7 @@ CLASSES = \
 	client/SetupView.java \
 	enums/Alliance.java \
 	enums/ScoreType.java \
-	server/ClientConfig,java \
+	server/ClientConfig.java \
 	server/ScoutServer.java \
 	serverDataBase/Match.java \
 	serverDataBase/MatchList.java \
