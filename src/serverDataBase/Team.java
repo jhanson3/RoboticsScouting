@@ -22,6 +22,7 @@ public class Team implements Serializable {
 	private String teamName;
 	private ArrayList<String> notes;
 	private ArrayList<Match> matches;
+	private ArrayList<Integer> matchNum;
 	private HashMap<Integer, MatchScore> scores;
 	
 	/*
@@ -39,6 +40,7 @@ public class Team implements Serializable {
 		teamName = name;
 		notes = new ArrayList<String>();
 		matches = new ArrayList<Match>();
+		matchNum = new ArrayList<Integer>();
 		scores = new HashMap<Integer, MatchScore>();
 		
 	}
@@ -153,6 +155,54 @@ public class Team implements Serializable {
 	 */
 	public void addMatch(Match match) {
 		matches.add(match);
+	}
+	
+	/*
+	 * getMatchScores
+	 * -----------------------------------------
+	 * Purpose: gets the whole hasmap of match scores
+	 */
+	public HashMap<Integer, MatchScore> getMatchscores() {
+		return scores;
+		
+	}
+	
+	/**
+	 * addScore<p>
+	 * Adds a score to this teams score table<p>
+	 * @param match (int) the match number to add the score to
+	 * @param score (ScoreType) the type of score to add
+	 */
+	public void addScore(int match, ScoreType score) {
+		
+		if (!matchNum.contains(match)) {
+			matchNum.add(match);
+			scores.put(match, new MatchScore());
+		}
+		
+		if (score == ScoreType.OP_SWITCH) {
+			scores.get(match).addScore(new OpSwitch(1));;
+		} else if (score == ScoreType.SWITCH) {
+			scores.get(match).addScore(new Switch(1));;
+		} else if (score == ScoreType.SCALE) {
+			scores.get(match).addScore(new Scale(1));;
+		} else if (score == ScoreType.VAULT) {
+			scores.get(match).addScore(new Vault(1));;
+		}
+		
+	}
+	
+	/**
+	 * prints all the matches the team was in with there
+	 * score for the corresponding match
+	 */
+	public void printMatches() {
+		System.out.println("Team " + teamNum + " has played " + matchNum.size() + " matches.");
+		
+		for (int i = 0; i < matchNum.size(); i++) {
+			System.out.println("   Match #" + matchNum.get(i) + ":");
+			scores.get(matchNum.get(i)).printMatch();
+		}
 	}
 
 }
