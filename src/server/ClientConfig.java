@@ -9,7 +9,7 @@ public class ClientConfig {
 	public Socket sock;
 	public ObjectOutputStream out;
 	public BufferedReader in;
-	int clientNum;
+	public int clientNum;
 	
 	public ClientConfig(Socket sock, ObjectOutputStream out, BufferedReader in, int num) {
 		this.sock = sock;

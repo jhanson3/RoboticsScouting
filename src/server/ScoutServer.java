@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class ScoutServer {
 		// Create Socket
         try {
             ServerSocket serverSocket = new ServerSocket(PORT_NUMBER, numClients);
-            while (true) {
+            while (count < 6) {
 	            Socket clientSocket = serverSocket.accept();
 	            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 	            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -42,10 +41,12 @@ public class ScoutServer {
 	            System.out.println("Connection established with client #" + count);
 	            count++;
             }
+            serverSocket.close();
         } catch (IOException e) {
             System.err.println("Could not listen on port: 1011.");
             System.exit(1);
         }
+        
 	}
 	
 	private class SetupRing implements Runnable{
@@ -58,31 +59,21 @@ public class ScoutServer {
 
 		@Override
 		public void run() {
-			int next, prev;
-			if (client.clientNum == 0) {
-				next = 1;
-				prev = numClients - 1;
-			} else if (client.clientNum == (numClients - 1)) {
+			int next;
+			if (client.clientNum == (numClients - 1)) {
 				next = 0;
-				prev = numClients - 2;
 			} else {
 				next = client.clientNum + 1;
-				prev = client.clientNum - 1;
 			}
 			
 			try {
-				client.out.writeObject(isLead());
-				client.out.writeObject(clients.get(prev));
+				client.out.writeObject(client.clientNum);
 				client.out.writeObject(clients.get(next));
 				client.out.flush();
 			} catch (IOException e) {
 				System.out.println("Failed to send data to client #" + client.clientNum);
 				e.printStackTrace();
 			}
-		}
-		
-		private Boolean isLead() {
-			return (client.clientNum == 0 ? true : false);
 		}
 		
 	}

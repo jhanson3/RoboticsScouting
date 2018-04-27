@@ -22,13 +22,16 @@ public class ClientCommandLine implements Runnable{
 	private int curMatch, scouter;
 	@SuppressWarnings("unused")
 	private Team curTeam;
+	private Client client;
 	
-	public ClientCommandLine(Boolean lead, int numScouter, TeamSheet event) {
+	public ClientCommandLine(Boolean lead, int numScouter, TeamSheet event, Client client) {
 		this.lead = lead;
 		this.scouter = numScouter;
 		inMatch = false;
 		this.event = event;
 		curMatch = 1;
+		this.client = client;
+		alive = true;
 	}
 	
 	/**
@@ -36,7 +39,6 @@ public class ClientCommandLine implements Runnable{
 	 */
 	public void startMatch() {
 		inMatch = true;
-		alive = true;
 	}
 	
 	/**
@@ -86,7 +88,7 @@ public class ClientCommandLine implements Runnable{
 			}
 			
 			if (inMatch) {
-				Client.getMatch(); // TODO: needs updating depending on network structure
+				client.getMatch();
 				playMatch();
 			
 			}
@@ -116,7 +118,7 @@ public class ClientCommandLine implements Runnable{
 			event.addTeam(number, false, null);
 			curTeams[i] = event.getTeam(number);
 		}
-		Client.sendMatch(curTeams);
+		client.sendMatch(curTeams);
 		
 	}
 
