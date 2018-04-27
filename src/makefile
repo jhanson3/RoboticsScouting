@@ -28,6 +28,8 @@ CLASSES = \
 	serverDataBase/Tournament.java \
 	serverDataBase/Vault.java 
 
+all: classes
+
 default: classes
 
 classes: $(CLASSES:.java=.class)
