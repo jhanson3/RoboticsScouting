@@ -8,8 +8,13 @@
 
 package client;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+
 import serverDataBase.Team;
 import serverDataBase.TeamSheet;
+import server.ClientConfig;
 
 public class Client {
 
@@ -19,6 +24,10 @@ public class Client {
 	private static int scouter;
 	private static TeamSheet event;
 	private static Thread comLineThread;
+	private Socket server, nextClient, prevClient;
+	private static String serverName;
+	private ObjectInputStream serverInput;
+	private ClientConfig nextConfig, prevConfig;
 	
 	/*
 	 * isLead
@@ -33,15 +42,28 @@ public class Client {
 	public static void main(String[] args) {
 		boolean gui = false;
 		
-		if (args.length >= 1) 
-			gui = ((args[0].equals("true")) ? true : false);
+		if (args.length >= 1)
+			serverName = args[0];
+		if (args.length >= 2) 
+			gui = ((args[1].equals("true")) ? true : false);
 		
-		//TODO: Server stuff
-			// if first to server make it lead
-			// get scouter number from server
+		new Client();
 		
 		if (gui) beginWindow(); // start gui scout
 		else beginCommandLine(); // start commandline scout
+	}
+	
+	public Client() {
+		try {
+			server = new Socket(serverName, 10110);
+			serverInput = new ObjectInputStream(server.getInputStream());
+			System.out.println("Found server '" + serverName + "'");
+			prevConfig = (ClientConfig) serverInput.readObject();
+			nextConfig = (ClientConfig) serverInput.readObject();
+			
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* 
