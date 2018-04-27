@@ -85,7 +85,6 @@ public class ClientCommandLine implements Runnable{
 					System.out.println("please enter a valid command. They are:");
 					System.out.println("        list");
 					System.out.println("        show");
-					System.out.println("        match");
 					System.out.println("        start");
 					System.out.println("        exit");
 				}
