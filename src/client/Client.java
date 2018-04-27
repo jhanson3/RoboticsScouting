@@ -29,12 +29,12 @@ public class Client {
 	private static Thread comLineThread;
 	private Socket server, nextClient, prevClient;
 	private static String serverName;
-	private ObjectInputStream serverInput, fromPrevClient;
-	private ObjectOutputStream toNextClient;
+	private ObjectInputStream serverInput;
+	private static ObjectInputStream fromPrevClient;
+	private static ObjectOutputStream toNextClient;
 	private ClientConfig nextConfig;
 	private ServerSocket mySock;
 	private static Client mySelf;
-	private Boolean sent;
 	
 	/*
 	 * isLead
@@ -61,8 +61,6 @@ public class Client {
 	}
 	
 	public Client() {
-		sent = false;
-		
 		try {
 			server = new Socket(serverName, 10110);
 			serverInput = new ObjectInputStream(server.getInputStream());
@@ -125,8 +123,44 @@ public class Client {
 		comLine = new ClientCommandLine(lead, scouter, event, mySelf);
 		comLineThread = new Thread(comLine);
 		comLineThread.start();
+		Thread t = new Thread(scoutReader());
+		t.start();
 	}
 	
+	private static Runnable scoutReader() {
+		while(true) {
+			ScouterMessage message = null;
+			try {
+				message = (ScouterMessage)fromPrevClient.readObject();
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
+			
+			// message has returned to the sender do nothing
+			if (message.getScouter() == scouter)
+				continue;
+			
+			// Deal with getting just a team
+			if (message.isSingleTeam()) {
+				event.addTeam(message.getTeam());
+			} else { // Deal with getting a match 
+				Team teams[] = message.getTeams();
+				for (int i=0; i < teams.length; i++) {
+					event.addTeam(teams[i].getTeamNum(), false, null);
+				}
+				comLine.curTeam = teams[scouter];
+				comLine.curMatch = message.getMatch();
+			}
+			
+			try {
+				toNextClient.writeObject(message);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+
 	/*
 	 * createEvent
 	 * -------------------------
@@ -143,17 +177,23 @@ public class Client {
 	 * Parameters:
 	 * 	teams: a list of Team to send out
 	 */
-	public void sendMatch(Team[] teams) {
-		// TODO: write this
+	public void sendMatch(Team[] teams, int match) {
+		ScouterMessage message = new ScouterMessage(teams, match, scouter);
+		try {
+			toNextClient.writeObject(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
-	/*
-	 * getMatch
-	 * -----------------------------------
-	 * waits for the next match to be recieved
-	 */
-	public void getMatch() {
-		// TODO Auto-generated method stub
-		
+	
+	public void sendTeam(Team team) {
+		ScouterMessage message = new ScouterMessage(team, scouter);
+		try {
+			toNextClient.writeObject(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	
 }

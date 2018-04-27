@@ -18,10 +18,8 @@ public class ClientCommandLine implements Runnable{
 	private Scanner in;
 	private String name;
 	private TeamSheet event;
-	@SuppressWarnings("unused")
-	private int curMatch, scouter;
-	@SuppressWarnings("unused")
-	private Team curTeam;
+	public int curMatch, scouter;
+	public Team curTeam;
 	private Client client;
 	
 	public ClientCommandLine(Boolean lead, int numScouter, TeamSheet event, Client client) {
@@ -51,7 +49,6 @@ public class ClientCommandLine implements Runnable{
 		name = in.nextLine();
 		
 		if (lead) { // Only for the scout lead
-			Client.sendEvent(); // send the teamlist
 			settupMatch(); // set up and send the first match
 		}
 		
@@ -88,9 +85,8 @@ public class ClientCommandLine implements Runnable{
 			}
 			
 			if (inMatch) {
-				client.getMatch();
 				playMatch();
-			
+				client.sendTeam(curTeam);
 			}
 		}
 		
@@ -118,7 +114,8 @@ public class ClientCommandLine implements Runnable{
 			event.addTeam(number, false, null);
 			curTeams[i] = event.getTeam(number);
 		}
-		client.sendMatch(curTeams);
+		client.sendMatch(curTeams, curMatch);
+		curMatch++;
 		
 	}
 
