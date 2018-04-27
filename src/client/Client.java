@@ -58,6 +58,12 @@ public class Client {
 		
 		if (gui) beginWindow(); // start gui scout
 		else beginCommandLine(); // start commandline scout
+		
+		try {
+			comLineThread.wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Client() {
@@ -92,6 +98,8 @@ public class Client {
 				e.printStackTrace();
 			}
 		}
+		
+		System.out.println("Connected to other clients ready to start");
 		
 		// establish the input/output streams
 		try {
@@ -150,6 +158,9 @@ public class Client {
 				}
 				comLine.curTeam = teams[scouter];
 				comLine.curMatch = message.getMatch();
+				comLine.inMatch = true;
+				
+				System.out.println("New Match schedule recieved! You are scouting team " + teams[scouter].getTeamNum() + ".");
 			}
 			
 			try {

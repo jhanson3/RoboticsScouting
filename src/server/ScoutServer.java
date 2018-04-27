@@ -13,6 +13,7 @@ public class ScoutServer {
 	public static final int PORT_NUMBER = 10110;
 	private static int numClients;
 	private static ArrayList<ClientConfig> clients;
+	private static int count;
 
 	public static void main(String[] args) throws IOException{
 		if (args.length >= 1)
@@ -25,7 +26,7 @@ public class ScoutServer {
 	
 	public ScoutServer() {
 		clients = new ArrayList<ClientConfig>();
-		int count = 0;
+		count = 0;
 		
 		// Create Socket
         try {
@@ -59,6 +60,11 @@ public class ScoutServer {
 
 		@Override
 		public void run() {
+			
+			while (count < numClients) {
+				// loop til all clients have connected
+			}
+			
 			int next;
 			if (client.clientNum == (numClients - 1)) {
 				next = 0;

@@ -14,7 +14,8 @@ import serverDataBase.TeamSheet;
  */
 public class ClientCommandLine implements Runnable{
 	
-	private boolean lead, inMatch, alive;
+	public boolean inMatch;
+	private boolean lead, alive;
 	private Scanner in;
 	private String name;
 	private TeamSheet event;
@@ -48,12 +49,13 @@ public class ClientCommandLine implements Runnable{
 		System.out.println("Enter Name: ");
 		name = in.nextLine();
 		
-		if (lead) { // Only for the scout lead
-			settupMatch(); // set up and send the first match
-		}
-		
 		while (alive) {
 			while (in.hasNext()) {
+				
+				if (lead && !inMatch) { // Only for the scout lead
+					settupMatch(); // set up and send the first match
+				}
+				
 				String buff = in.nextLine();
 				
 				if (buff.toLowerCase().equals("list")) {
@@ -75,12 +77,17 @@ public class ClientCommandLine implements Runnable{
 					} else {
 						System.out.println("Match data not yet recieved, cannot start yet.");
 					}
-				} else {
+				} else if (buff.toLowerCase().equals("exit")) {
+					notify();
+					return;
+				}
+				else {
 					System.out.println("please enter a valid command. They are:");
 					System.out.println("        list");
 					System.out.println("        show");
 					System.out.println("        match");
 					System.out.println("        start");
+					System.out.println("        exit");
 				}
 			}
 			
@@ -116,7 +123,7 @@ public class ClientCommandLine implements Runnable{
 		}
 		client.sendMatch(curTeams, curMatch);
 		curMatch++;
-		
+		inMatch = true;
 	}
 
 	/**
@@ -141,7 +148,8 @@ public class ClientCommandLine implements Runnable{
 			} else if (buff.toLowerCase().equals("vault")) {
 				curTeam.addScore(curMatch, ScoreType.VAULT);
 			} else if (buff.toLowerCase().equals("done")) {
-				break;
+				inMatch = false;
+				return;
 			} else {
 				System.out.println("please enter a valid command. They are:");
 				System.out.println("        switch");
