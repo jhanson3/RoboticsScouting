@@ -94,6 +94,7 @@ public class ClientCommandLine implements Runnable{
 			
 			if (inMatch) {
 				playMatch();
+				curTeam.printMatches();
 				client.sendTeam(curTeam);
 			}
 		}
