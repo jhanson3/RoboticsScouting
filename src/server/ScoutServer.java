@@ -32,7 +32,7 @@ public class ScoutServer {
             while (count < 6) {
 	            Socket clientSocket = serverSocket.accept();
 	            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-	            clients.add(new ClientConfig(clientSocket, count));
+	            clients.add(new ClientConfig(clientSocket.getInetAddress(), count));
 	            
 	            Thread t = new Thread(new SetupRing(clients.get(count), out));
 	            t.start();

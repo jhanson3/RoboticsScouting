@@ -85,7 +85,7 @@ public class Client {
 		// Connect the ring starting with the lead
 		if (lead) {
 			try {
-				nextClient = new Socket(nextConfig.sock.getInetAddress(), BASE_PORT + nextConfig.clientNum);
+				nextClient = new Socket(nextConfig.addr, BASE_PORT + nextConfig.clientNum);
 				mySock.accept();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -93,7 +93,7 @@ public class Client {
 		} else {
 			try {
 				prevClient = mySock.accept();
-				nextClient = new Socket(nextConfig.sock.getInetAddress(), BASE_PORT + nextConfig.clientNum);
+				nextClient = new Socket(nextConfig.addr, BASE_PORT + nextConfig.clientNum);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
