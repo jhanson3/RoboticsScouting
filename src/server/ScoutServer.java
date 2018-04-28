@@ -1,8 +1,6 @@
 package server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -34,8 +32,7 @@ public class ScoutServer {
             while (count < 6) {
 	            Socket clientSocket = serverSocket.accept();
 	            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-	            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-	            clients.add(new ClientConfig(clientSocket, out, in, count));
+	            clients.add(new ClientConfig(clientSocket, out, count));
 	            
 	            Thread t = new Thread(new SetupRing(clients.get(count)));
 	            t.start();
