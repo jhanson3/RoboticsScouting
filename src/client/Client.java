@@ -87,7 +87,7 @@ public class Client {
 			try {
 				Thread.sleep(1000);
 				nextClient = new Socket(nextConfig.addr, BASE_PORT + nextConfig.clientNum);
-				mySock.accept();
+				prevClient = mySock.accept();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
