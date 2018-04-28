@@ -1,5 +1,6 @@
 package client;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import enums.ScoreType;
@@ -118,11 +119,19 @@ public class ClientCommandLine implements Runnable{
 		
 		Team[] curTeams = new Team[6];
 		for (int i = 0; i < 6; i++) {
-			int number = in.nextInt();
+			int number = -1;
+			try {
+				number = in.nextInt();
+			}
+			catch (InputMismatchException e) {
+				System.out.println("Please only enter a number");
+				i--;
+				continue;
+			}
 			event.addTeam(number, false, null);
 			curTeams[i] = event.getTeam(number);
 		}
-		curTeam = curTeams[0];
+		curTeam = event.getTeam(curTeams[0].getTeamNum());
 		client.sendMatch(curTeams, curMatch);
 		curMatch++;
 		inMatch = true;
