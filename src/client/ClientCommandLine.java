@@ -48,14 +48,16 @@ public class ClientCommandLine implements Runnable{
 		
 		System.out.println("Enter Name: ");
 		name = in.nextLine();
+		System.out.println("Welcome " + name);
 		
 		while (alive) {
-			while (in.hasNext()) {
+			while (true) {
 				
 				if (lead && !inMatch) { // Only for the scout lead
 					settupMatch(); // set up and send the first match
 				}
 				
+				System.out.println("Waiting for a match");
 				String buff = in.nextLine();
 				
 				if (buff.toLowerCase().equals("list")) {

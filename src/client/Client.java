@@ -107,9 +107,9 @@ public class Client {
 		// establish the input/output streams
 		try {
 			toNextClient = new ObjectOutputStream(nextClient.getOutputStream());
-			System.out.println("after output set");
+			//System.out.println("after output set");
 			fromPrevClient = new ObjectInputStream(prevClient.getInputStream());
-			System.out.println("after input set");
+			//System.out.println("after input set");
 			toNextClient.flush();
 			
 		} catch (IOException e) {
@@ -133,7 +133,7 @@ public class Client {
 	 * starts the commandline scout
 	 */
 	public static void beginCommandLine() {
-		if (lead) createEvent();
+		createEvent();
 		comLine = new ClientCommandLine(lead, scouter, event, mySelf);
 		comLineThread = new Thread(comLine);
 		comLineThread.start();
