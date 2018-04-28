@@ -107,7 +107,9 @@ public class Client {
 		// establish the input/output streams
 		try {
 			fromPrevClient = new ObjectInputStream(prevClient.getInputStream());
+			System.out.println("after input set");
 			toNextClient = new ObjectOutputStream(nextClient.getOutputStream());
+			System.out.println("after output set");
 			toNextClient.flush();
 			
 		} catch (IOException e) {
