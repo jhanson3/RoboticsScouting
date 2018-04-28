@@ -9,15 +9,21 @@ package enums;
 
 public enum ScoreType {
 
-	SAMPLE_10(10), SWITCH(0), SCALE(0), OP_SWITCH(0), VAULT(5);
+	SAMPLE_10(10, "sample 10"), SWITCH(0, "switch"), SCALE(0, "scale"), OP_SWITCH(0, "opponent switch"), VAULT(5, "vault");
 	
 	private int score;
+	private String name;
 	
-	ScoreType(int num) {
+	ScoreType(int num, String name) {
 		score = num;
+		this.name = name;
 	}
 	
 	public int getScore() {
 		return score;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

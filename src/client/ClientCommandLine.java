@@ -122,6 +122,7 @@ public class ClientCommandLine implements Runnable{
 			event.addTeam(number, false, null);
 			curTeams[i] = event.getTeam(number);
 		}
+		curTeam = curTeams[0];
 		client.sendMatch(curTeams, curMatch);
 		curMatch++;
 		inMatch = true;

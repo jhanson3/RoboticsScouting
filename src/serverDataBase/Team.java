@@ -180,6 +180,7 @@ public class Team implements Serializable {
 	public void addScore(int match, ScoreType score) {
 		
 		if (!matchNum.contains(match)) {
+			System.out.println("adding match " + match);
 			matchNum.add(match);
 			scores.put(match, new MatchScore());
 		}
