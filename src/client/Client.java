@@ -161,7 +161,7 @@ public class Client {
 			} else { // Deal with getting a match 
 				Team teams[] = message.getTeams();
 				for (int i=0; i < teams.length; i++) {
-					event.addTeam(teams[i].getTeamNum(), false, null);
+					event.addTeam(teams[i]);
 				}
 				comLine.curTeam = event.getTeam(teams[scouter].getTeamNum());
 				comLine.curMatch = message.getMatch();

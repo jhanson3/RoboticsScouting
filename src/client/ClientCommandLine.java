@@ -1,6 +1,5 @@
 package client;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import enums.ScoreType;
@@ -29,7 +28,7 @@ public class ClientCommandLine implements Runnable{
 		this.scouter = numScouter;
 		inMatch = false;
 		this.event = event;
-		curMatch = 1;
+		curMatch = 0;
 		this.client = client;
 		alive = true;
 	}
@@ -124,8 +123,8 @@ public class ClientCommandLine implements Runnable{
 			curTeams[i] = event.getTeam(number);
 		}
 		curTeam = event.getTeam(curTeams[0].getTeamNum());
-		client.sendMatch(curTeams, curMatch);
 		curMatch++;
+		client.sendMatch(curTeams, curMatch);
 		inMatch = true;
 	}
 
@@ -166,7 +165,7 @@ public class ClientCommandLine implements Runnable{
 				System.out.println("        done");
 			}
 			
-			printTeam(curTeam.getTeamNum());
+			//printTeam(curTeam.getTeamNum());
 		}
 		
 	}
