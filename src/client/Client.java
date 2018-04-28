@@ -157,6 +157,7 @@ public class Client {
 			// Deal with getting just a team
 			if (message.isSingleTeam()) {
 				event.addTeam(message.getTeam());
+				comLine.updateEvent(event);
 				System.out.println("Data recieved for team " + message.getTeam().getTeamNum());
 			} else { // Deal with getting a match 
 				Team teams[] = message.getTeams();

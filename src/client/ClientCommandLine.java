@@ -107,6 +107,10 @@ public class ClientCommandLine implements Runnable{
 	private void printTeam(int num) {
 		event.printTeam(num);
 	}
+	
+	public void updateEvent(TeamSheet event) {
+		this.event = event;
+	}
 
 	/**
 	 * lets the leader set up the match and assign each other client 
