@@ -85,9 +85,13 @@ public class Client {
 		// Connect the ring starting with the lead
 		if (lead) {
 			try {
+				Thread.sleep(1000);
 				nextClient = new Socket(nextConfig.addr, BASE_PORT + nextConfig.clientNum);
 				mySock.accept();
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
