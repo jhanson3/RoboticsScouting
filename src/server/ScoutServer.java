@@ -32,9 +32,9 @@ public class ScoutServer {
             while (count < 6) {
 	            Socket clientSocket = serverSocket.accept();
 	            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-	            clients.add(new ClientConfig(clientSocket, out, count));
+	            clients.add(new ClientConfig(clientSocket, count));
 	            
-	            Thread t = new Thread(new SetupRing(clients.get(count)));
+	            Thread t = new Thread(new SetupRing(clients.get(count), out));
 	            t.start();
 	            System.out.println("Connection established with client #" + count);
 	            count++;
@@ -50,9 +50,11 @@ public class ScoutServer {
 	private class SetupRing implements Runnable{
 		
 		ClientConfig client;
+		ObjectOutputStream out;
 		
-		public SetupRing(ClientConfig client) {
+		public SetupRing(ClientConfig client, ObjectOutputStream out) {
 			this.client = client;
+			this.out = out;
 		}
 
 		@Override
@@ -72,9 +74,9 @@ public class ScoutServer {
 			System.out.println("sending data for " + next + " to " + client.clientNum);
 			
 			try {
-				client.out.writeObject(client.clientNum);
-				client.out.writeObject(clients.get(next));
-				client.out.flush();
+				out.writeObject(client.clientNum);
+				out.writeObject(clients.get(next));
+				out.flush();
 			} catch (IOException e) {
 				System.out.println("Failed to send data to client #" + client.clientNum);
 				e.printStackTrace();
