@@ -103,7 +103,7 @@ public class Client {
 			}
 		}
 		
-		System.out.println("Connected to other clients ready to start");
+		System.out.println("Connected to " + nextClient.getInetAddress() + " ready to start");
 		
 		// establish the input/output streams
 		try {
