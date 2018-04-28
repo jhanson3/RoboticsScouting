@@ -96,6 +96,7 @@ public class TeamSheet implements Serializable {
 			System.out.println("replacing team " + team.getTeamNum());
 			teams.replace(team.getTeamNum(), team);
 		} else {
+			System.out.println("adding team " + team.getTeamNum());
 			teams.put(team.getTeamNum(), team);
 			teamNumbers.add(team.getTeamNum());
 		}
