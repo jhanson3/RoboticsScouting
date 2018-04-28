@@ -133,6 +133,11 @@ public class ClientCommandLine implements Runnable{
 	 */
 	private void playMatch() {
 		
+		System.out.println("You have started the match, please track scores in:");
+		System.out.println("     switch");
+		System.out.println("     scale");
+		System.out.println("     Vault");
+		
 		while (in.hasNext()) {
 			String buff = in.nextLine();
 			

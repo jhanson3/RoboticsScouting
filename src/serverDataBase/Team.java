@@ -55,6 +55,10 @@ public class Team implements Serializable {
 	 */
 	public Team(int num) {
 		teamNum = num;
+		notes = new ArrayList<String>();
+		matches = new ArrayList<Match>();
+		matchNum = new ArrayList<Integer>();
+		scores = new HashMap<Integer, MatchScore>();
 	}
 
 	/*
