@@ -91,7 +91,6 @@ public class Client {
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -109,6 +108,7 @@ public class Client {
 		try {
 			fromPrevClient = new ObjectInputStream(prevClient.getInputStream());
 			toNextClient = new ObjectOutputStream(nextClient.getOutputStream());
+			toNextClient.flush();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -170,6 +170,7 @@ public class Client {
 			
 			try {
 				toNextClient.writeObject(message);
+				toNextClient.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -197,6 +198,7 @@ public class Client {
 		ScouterMessage message = new ScouterMessage(teams, match, scouter);
 		try {
 			toNextClient.writeObject(message);
+			toNextClient.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -206,6 +208,7 @@ public class Client {
 		ScouterMessage message = new ScouterMessage(team, scouter);
 		try {
 			toNextClient.writeObject(message);
+			toNextClient.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
