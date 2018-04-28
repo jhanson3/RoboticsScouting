@@ -64,16 +64,16 @@ public class MatchScore implements Serializable{
 	 */
 	public void printMatch() {
 		if (scores.containsKey(ScoreType.SWITCH)) {
-			System.out.println("      Switch: " + scores.get(ScoreType.SWITCH));
+			System.out.println("      Switch: " + scores.get(ScoreType.SWITCH).getTimesScored());
 		}
 		if (scores.containsKey(ScoreType.OP_SWITCH)) {
-			System.out.println("      Opponent's Switch: " + scores.get(ScoreType.OP_SWITCH));
+			System.out.println("      Opponent's Switch: " + scores.get(ScoreType.OP_SWITCH).getTimesScored());
 		}
 		if (scores.containsKey(ScoreType.SCALE)) {
-			System.out.println("      Scale: " + scores.get(ScoreType.SCALE));
+			System.out.println("      Scale: " + scores.get(ScoreType.SCALE).getTimesScored());
 		}
 		if (scores.containsKey(ScoreType.VAULT)) {
-			System.out.println("      Vault: " + scores.get(ScoreType.VAULT));
+			System.out.println("      Vault: " + scores.get(ScoreType.VAULT).getTimesScored());
 		}
 	}
 	
