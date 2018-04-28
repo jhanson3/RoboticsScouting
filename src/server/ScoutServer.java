@@ -12,6 +12,7 @@ public class ScoutServer {
 	private static int numClients;
 	private static ArrayList<ClientConfig> clients;
 	private static int count;
+	private static ArrayList<Thread> threads;
 
 	public static void main(String[] args) throws IOException{
 		if (args.length >= 1)
@@ -29,16 +30,21 @@ public class ScoutServer {
 		// Create Socket
         try {
             ServerSocket serverSocket = new ServerSocket(PORT_NUMBER);
-            while (count < 6) {
+            while (count < numClients) {
 	            Socket clientSocket = serverSocket.accept();
 	            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
 	            clients.add(new ClientConfig(clientSocket.getInetAddress(), count));
 	            
-	            Thread t = new Thread(new SetupRing(clients.get(count), out));
-	            t.start();
+	            threads.add(new Thread(new SetupRing(clients.get(count), out)));
 	            System.out.println("Connection established with client #" + count);
 	            count++;
             }
+            
+            while(!threads.isEmpty()) {
+            	Thread t = threads.remove(0);
+            	t.start();
+            }
+            
             serverSocket.close();
         } catch (IOException e) {
             System.err.println("Could not listen on port: 1011.");
@@ -59,10 +65,6 @@ public class ScoutServer {
 
 		@Override
 		public void run() {
-			
-			while (count < numClients) {
-				// loop til all clients have connected
-			}
 			
 			int next;
 			if (client.clientNum == (numClients - 1)) {
