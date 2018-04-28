@@ -119,15 +119,7 @@ public class ClientCommandLine implements Runnable{
 		
 		Team[] curTeams = new Team[6];
 		for (int i = 0; i < 6; i++) {
-			int number = -1;
-			try {
-				number = in.nextInt();
-			}
-			catch (InputMismatchException e) {
-				System.out.println("Please only enter a number");
-				i--;
-				continue;
-			}
+			int number = in.nextInt();
 			event.addTeam(number, false, null);
 			curTeams[i] = event.getTeam(number);
 		}
