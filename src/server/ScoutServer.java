@@ -30,7 +30,7 @@ public class ScoutServer {
 		
 		// Create Socket
         try {
-            ServerSocket serverSocket = new ServerSocket(PORT_NUMBER, numClients);
+            ServerSocket serverSocket = new ServerSocket(PORT_NUMBER);
             while (count < 6) {
 	            Socket clientSocket = serverSocket.accept();
 	            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
