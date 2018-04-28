@@ -1,5 +1,7 @@
 package serverDataBase;
 
+import enums.ScoreType;
+
 /**
  * Switch.java<p>
  * This class extends score and is used to keep track of
@@ -22,6 +24,7 @@ public class Switch extends Score{
 	public Switch(int num) {
 		super(num);
 		secondsControled = 0;
+		super.setScoreType(ScoreType.SWITCH);
 	}
 
 	/**

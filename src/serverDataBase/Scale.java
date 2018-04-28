@@ -1,5 +1,7 @@
 package serverDataBase;
 
+import enums.ScoreType;
+
 /**
  * Scale.java<p>
  * This class extends score and is used to keep 
@@ -21,6 +23,7 @@ public class Scale extends Score{
 	 */
 	public Scale(int num) {
 		super(num);
+		super.setScoreType(ScoreType.SCALE);
 	}
 
 	/**

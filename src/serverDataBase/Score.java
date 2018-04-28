@@ -60,6 +60,10 @@ public abstract class Score implements Serializable{
 		return type;
 	}
 	
+	public void setScoreType(ScoreType type) {
+		this.type = type;
+	}
+	
 	/**
 	 * resets the score and recalculates, then returns the new points
 	 * @return (int) total points scored by this score type

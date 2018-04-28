@@ -1,5 +1,7 @@
 package serverDataBase;
 
+import enums.ScoreType;
+
 /**
  * Vault.java<p>
  * This class extends score and is used to keep track
@@ -21,6 +23,7 @@ public class Vault extends Score{
 	 */
 	public Vault(int num) {
 		super(num);
+		super.setScoreType(ScoreType.VAULT);
 	}
 
 	/**

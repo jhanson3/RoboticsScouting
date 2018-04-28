@@ -163,7 +163,7 @@ public class Client {
 				for (int i=0; i < teams.length; i++) {
 					event.addTeam(teams[i].getTeamNum(), false, null);
 				}
-				comLine.curTeam = teams[scouter];
+				comLine.curTeam = event.getTeam(teams[scouter].getTeamNum());
 				comLine.curMatch = message.getMatch();
 				comLine.inMatch = true;
 				

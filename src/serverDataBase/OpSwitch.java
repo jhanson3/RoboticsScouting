@@ -1,5 +1,7 @@
 package serverDataBase;
 
+import enums.ScoreType;
+
 /**
  * OpSwitch.java<p>
  * This class extends score and is used to keep track of
@@ -15,6 +17,7 @@ public class OpSwitch extends Score{
 
 	public OpSwitch(int num) {
 		super(num);
+		super.setScoreType(ScoreType.OP_SWITCH);
 	}
 
 	/**
