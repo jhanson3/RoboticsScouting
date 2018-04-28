@@ -72,6 +72,8 @@ public class ScoutServer {
 				next = client.clientNum + 1;
 			}
 			
+			System.out.println("sending data for " + next + " to " + client.clientNum);
+			
 			try {
 				client.out.writeObject(client.clientNum);
 				client.out.writeObject(clients.get(next));
