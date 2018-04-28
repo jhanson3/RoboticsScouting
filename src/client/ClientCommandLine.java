@@ -70,7 +70,7 @@ public class ClientCommandLine implements Runnable{
 					if (event.teamExists(num)) {
 						printTeam(num);
 					} else {
-						System.out.println("Team " + num + "does not exist in this event.");
+						System.out.println("Team " + num + " does not exist in this event.");
 					}
 					
 				} else if (buff.toLowerCase().equals("start")) {
@@ -163,8 +163,8 @@ public class ClientCommandLine implements Runnable{
 				System.out.println("        vault");
 				System.out.println("        done");
 			}
-				
 			
+			printTeam(curTeam.getTeamNum());
 		}
 		
 	}
