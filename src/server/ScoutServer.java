@@ -26,6 +26,7 @@ public class ScoutServer {
 	public ScoutServer() {
 		clients = new ArrayList<ClientConfig>();
 		count = 0;
+		threads = new ArrayList<Thread>();
 		
 		// Create Socket
         try {
