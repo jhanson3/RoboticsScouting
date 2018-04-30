@@ -92,14 +92,14 @@ public class TeamSheet implements Serializable {
 	 */
 	public void addTeam(Team team) {
 		
-		/*if (teamExists(team.getTeamNum())) {
+		if (teamExists(team.getTeamNum())) {
 			System.out.println("replacing team " + team.getTeamNum());
 			teams.replace(team.getTeamNum(), team);
-		} else {*/
+		} else {
 			System.out.println("adding team " + team.getTeamNum());
 			teams.put(team.getTeamNum(), team);
 			teamNumbers.add(team.getTeamNum());
-		//}
+		}
 	}
 	
 	/*

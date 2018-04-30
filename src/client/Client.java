@@ -156,14 +156,14 @@ public class Client {
 			
 			// Deal with getting just a team
 			if (message.isSingleTeam()) {
-				message.getTeam().printMatches();
+				//message.getTeam().printMatches();
 				event.addTeam(message.getTeam());
-				comLine.updateEvent(event);
+				//comLine.updateEvent(event);
 				System.out.println("Data recieved for team " + message.getTeam().getTeamNum());
 			} else { // Deal with getting a match 
 				Team teams[] = message.getTeams();
 				for (int i=0; i < teams.length; i++) {
-					event.addTeam(teams[i]);
+					event.addTeam(teams[i].getTeamNum(), false, null);
 				}
 				comLine.curTeam = event.getTeam(teams[scouter].getTeamNum());
 				comLine.curMatch = message.getMatch();
